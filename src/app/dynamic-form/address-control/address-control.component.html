@@ -1,0 +1,21 @@
+
+<nz-input-group>
+  <div nz-row [nzGutter]="10">
+    <div nz-col nzSpan="12">
+      <nz-cascader 
+      [nzOptions]="addressList" 
+      [nzPlaceHolder]="'请选择地区'"
+      [ngModel]="addressValue" 
+      [nzLabelProperty]="'name'"
+      [nzValueProperty]="'name'"
+      [nzDisabled]="disabled"
+      (ngModelChange)="onCascaderChanges($event)"
+      class="address-cascader"
+      style="width: 100%;"
+      ></nz-cascader>
+    </div>
+    <div nz-col nzSpan="12">
+      <input nz-input placeholder="详细地址" [disabled]="disabled" [ngModel]="addressDetail" (ngModelChange)="onDetailChanges($event)" />
+    </div>
+  </div>
+</nz-input-group>

@@ -1,0 +1,14 @@
+<nz-upload
+  class="avatar-uploader"
+  nzAction="/a/u/img/file"
+  nzListType="picture-card"
+  [nzFileList]="fileList" 
+  [nzBeforeUpload]="beforeUpload"
+  [nzShowButton]="fileList.length < limit"
+  [nzDisabled]="disabled"
+  [nzMultiple]="true" 
+  (nzChange)="handleChange($event)"
+>
+  <i nz-icon nzType="plus"></i>
+  <div class="ant-upload-text">上传</div>
+</nz-upload>

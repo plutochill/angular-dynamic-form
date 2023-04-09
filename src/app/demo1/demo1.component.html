@@ -1,0 +1,7 @@
+<h2>表单group</h2>
+
+<app-dynamic-form [formConfig]="formConfig" [formValue]="formValue" [isEdit]="isEdit"></app-dynamic-form>
+
+<div>
+    <button nz-button nzType="primary" (click)="onSubmit()" [disabled]="!isValid">submit</button>
+</div>

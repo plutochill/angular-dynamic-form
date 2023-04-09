@@ -1,0 +1,97 @@
+<form nz-form [formGroup]="myForm" class="dy-form">
+  <ng-container *ngFor="let configControls of formConfig; let index = index;">
+    <h2>{{configControls.title}}</h2>
+    <div nz-row class="dy-form-section">
+      <div nz-col [nzSpan]="configControls.span || 12" *ngFor="let control of configControls.controls">
+
+
+        <nz-form-item *ngIf="control.type !== eFormControlType.HIDDEN">
+          <nz-form-label 
+            *ngIf="control.label !== ''"
+            [nzRequired]="control.validators?.required">{{ control.label }}</nz-form-label>
+          <nz-form-control>
+            <input [formControlName]="control.name"  [value]="control.value" type="hidden">
+
+            <input 
+            *ngIf="[
+            eFormControlType.TEXT,
+            eFormControlType.PASSWORD,
+            eFormControlType.EMAIL,
+            eFormControlType.NUMBER,
+            eFormControlType.SEARCH,
+            eFormControlType.TEL,
+            eFormControlType.URL
+          ].includes(control.type)"
+            nz-input 
+            [type]="eFormControlType[control.type]"
+            [formControlName]="control.name"
+            [value]="control.value"
+            [placeholder]="control.placeholder || '请输入'"
+            nzHasFeedback="true"
+            />
+
+            <textarea 
+            nz-input
+            *ngIf="control.type === eFormControlType.TEXTAREA"
+            [formControlName]="control.name"
+            [value]="control.value"
+            [placeholder]="control.placeholder || '请输入'"
+            ></textarea>
+  
+            <label nz-checkbox 
+            *ngIf="control.type === eFormControlType.CHECKBOX"
+            [formControlName]="control.name"
+            [nzValue]="control.value"
+            ></label>
+
+            <app-checkbox-group-control
+            *ngIf="control.type === eFormControlType.CHECKBOX_GROUP"
+            [formControlName]="control.name"
+            [selectOptions]="control.selectOptions">
+            </app-checkbox-group-control>
+
+            <nz-radio-group
+            *ngIf="control.type === eFormControlType.RADIO"
+            [formControlName]="control.name">
+              <label *ngFor="let option of control.selectOptions" nz-radio [nzValue]="option.value">{{option.label}}</label>
+            </nz-radio-group>
+
+            <nz-select
+            *ngIf="control.type === eFormControlType.SELECT"
+            nzAllowClear 
+            [formControlName]="control.name"
+            [nzOptions]="control.selectOptions"
+            >
+            </nz-select>
+
+            <app-upload-control
+            *ngIf="control.type === eFormControlType.IMAGES || control.type === eFormControlType.IMAGE"
+            [formControlName]="control.name"
+            placeholder="上传附件" 
+            [fileType]='control.type === eFormControlType.IMAGES ? "json" : "string"'
+            [limit]="20" 
+            [fileSize]="50" 
+            ></app-upload-control>
+            
+            <app-date-picker-control
+            *ngIf="[
+            eFormControlType.DATE,
+            eFormControlType.YEAR,
+            eFormControlType.MONTH,
+            eFormControlType.WEEK,
+            eFormControlType.RANGE
+            ].includes(control.type)"
+            [formControlName]="control.name"
+            [type]="control.type"
+            ></app-date-picker-control>
+
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </ng-container>
+
+  
+ 
+
+</form>

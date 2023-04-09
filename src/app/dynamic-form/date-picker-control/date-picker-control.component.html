@@ -1,0 +1,39 @@
+<nz-date-picker 
+  *ngIf="type === eFormControlType.DATE" 
+  nzAllowClear="true"
+  [ngModel]="date" 
+  (ngModelChange)="onDateChange($event)"
+  [nzDisabled]="disabled"
+  ></nz-date-picker>
+
+<nz-year-picker 
+  *ngIf="type === eFormControlType.YEAR" 
+  nzAllowClear="true"
+  [ngModel]="date" 
+  (ngModelChange)="onDateChange($event)"
+  [nzDisabled]="disabled"
+></nz-year-picker>
+
+<nz-month-picker 
+  *ngIf="type === eFormControlType.MONTH"
+  nzAllowClear="true"
+  [ngModel]="date" 
+  (ngModelChange)="onDateChange($event)"
+  [nzDisabled]="disabled"
+  ></nz-month-picker>
+
+<nz-week-picker 
+  *ngIf="type === eFormControlType.WEEK"
+  nzAllowClear="true"
+  [ngModel]="date" 
+  (ngModelChange)="onDateChange($event)"
+  [nzDisabled]="disabled"
+  ></nz-week-picker>
+
+<nz-range-picker 
+  *ngIf="type === eFormControlType.RANGE"
+  nzAllowClear="true"
+  [ngModel]="date" 
+  (ngModelChange)="onDateChange($event)"
+  [nzDisabled]="disabled"
+  ></nz-range-picker>
